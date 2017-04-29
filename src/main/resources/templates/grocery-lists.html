@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Grocery lists</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <table>
+    	<thead>
+    		<tr>
+    			<th>Name</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+	    	<tr th:each="lists : ${lists}">
+	    		<td th:text="${list.name}">Super grocery</td>
+	    	</tr>
+	    </tbody>
+    </table>
+</body>
+</html>

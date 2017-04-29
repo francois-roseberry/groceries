@@ -3,6 +3,9 @@ package com.fr.demo.groceries;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import java.util.ArrayList;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
@@ -23,10 +26,10 @@ public class MainControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/greeting"))
+    public void getListsPage() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/lists"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("name", equalTo("World")))
-                .andExpect(view().name("greeting"));
+                .andExpect(model().attribute("lists", equalTo(new ArrayList<>())))
+                .andExpect(view().name("grocery-lists"));
     }
 }
