@@ -19,13 +19,17 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @AutoConfigureMockMvc
 public class GroceryListControllerTest {
 	@Autowired
-    private MockMvc mvc;
+	private MockMvc mvc;
 
-    @Test
-    public void getGroceryListPage() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/lists/1"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("list", equalTo(GroceryListService.GROCERY_LIST)))
-                .andExpect(view().name("grocery-list"));
-    }
+	@Test
+	public void getGroceryListPage() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/lists/0")).andExpect(status().isOk())
+				.andExpect(model().attribute("list", equalTo(GroceryListService.GROCERY_LIST)))
+				.andExpect(view().name("grocery-list"));
+	}
+
+	@Test
+	public void gettingUnexistingListShouldReturn404() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/lists/1")).andExpect(status().isNotFound());
+	}
 }
