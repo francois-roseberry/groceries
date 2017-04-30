@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableList;
 
 @Service
 public class GroceryListService {
-	public static final GroceryList GROCERY_LIST = new GroceryList("Provigo", ImmutableList.of(new Product("Milk")));
+	public static final GroceryList GROCERY_LIST = new GroceryList(1, "Provigo", ImmutableList.of(new Product("Milk")));
 
 	public List<GroceryList> getAll() {
 		return ImmutableList.of(GROCERY_LIST);
