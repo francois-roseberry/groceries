@@ -17,10 +17,10 @@ public class MainController {
 		this.service = service;
 	}
 
-	@RequestMapping(value = "/lists", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getListsForm(Model model) {
 		List<GroceryList> lists = service.getAll();
 		model.addAttribute("lists", lists);
-		return "grocery-lists";
+		return "grocery-list-list";
 	}
 }

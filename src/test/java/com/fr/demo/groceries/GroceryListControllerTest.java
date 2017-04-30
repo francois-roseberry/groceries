@@ -14,21 +14,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.google.common.collect.ImmutableList;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MainControllerTest {
-
-    @Autowired
+public class GroceryListControllerTest {
+	@Autowired
     private MockMvc mvc;
 
     @Test
-    public void getListsPage() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/"))
+    public void getGroceryListPage() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/lists/1"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("lists", equalTo(ImmutableList.of(GroceryListService.GROCERY_LIST))))
-                .andExpect(view().name("grocery-list-list"));
+                .andExpect(model().attribute("list", equalTo(GroceryListService.GROCERY_LIST)))
+                .andExpect(view().name("grocery-list"));
     }
 }
