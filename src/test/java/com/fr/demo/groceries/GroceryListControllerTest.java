@@ -24,7 +24,7 @@ public class GroceryListControllerTest {
 	@Test
 	public void getGroceryListPage() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/lists/0")).andExpect(status().isOk())
-				.andExpect(model().attribute("list", equalTo(GroceryListService.GROCERY_LIST)))
+				.andExpect(model().attribute("list", equalTo(FakeData.GroceryLists.GROCERY_LIST)))
 				.andExpect(view().name("grocery-list"));
 	}
 

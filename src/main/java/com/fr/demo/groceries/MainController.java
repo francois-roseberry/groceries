@@ -1,7 +1,5 @@
 package com.fr.demo.groceries;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,17 +8,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
-	private final GroceryListService service;
+	private final GroceryListService groceryService;
+	private final RecipeService recipeService;
 
 	@Autowired
-	MainController(GroceryListService service) {
-		this.service = service;
+	MainController(GroceryListService service, RecipeService recipeService) {
+		this.groceryService = service;
+		this.recipeService = recipeService;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getListsForm(Model model) {
-		List<GroceryList> lists = service.getAll();
-		model.addAttribute("lists", lists);
+		model.addAttribute("lists", groceryService.getAll());
+		model.addAttribute("recipeCount", recipeService.getAll().size());
 		return "grocery-list-list";
 	}
 }

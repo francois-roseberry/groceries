@@ -14,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.google.common.collect.ImmutableList;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -28,7 +26,8 @@ public class MainControllerTest {
     public void getListsPage() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("lists", equalTo(ImmutableList.of(GroceryListService.GROCERY_LIST))))
+                .andExpect(model().attribute("lists", equalTo(FakeData.GroceryLists.ALL)))
+                .andExpect(model().attribute("recipeCount", FakeData.Recipes.ALL.size()))
                 .andExpect(view().name("grocery-list-list"));
     }
 }
