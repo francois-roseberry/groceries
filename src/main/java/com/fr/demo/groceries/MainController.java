@@ -19,7 +19,7 @@ public class MainController {
 
 	@RequestMapping(value = "/lists", method = RequestMethod.GET)
 	public String getListsForm(Model model) {
-		List<GroceryListService> lists = service.getAll();
+		List<GroceryList> lists = service.getAll();
 		model.addAttribute("lists", lists);
 		return "grocery-lists";
 	}
