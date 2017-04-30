@@ -26,4 +26,8 @@ public class GroceryList {
 	public List<Product> getProducts() {
 		return products;
 	}
+	
+	public int getProductCount() {
+		return products.size();
+	}
 }

@@ -9,11 +9,13 @@
     	<thead>
     		<tr>
     			<th>Name</th>
+    			<th>Products</th>
     		</tr>
     	</thead>
     	<tbody>
 	    	<tr th:each="list : ${lists}">
 	    		<td th:text="${list.name}">Super grocery</td>
+	    		<td th:text="${list.productCount}"></td>
 	    		<td><a th:href="@{/lists/{listId}(listId=${list.id})}">Edit</a></td>
 	    	</tr>
 	    </tbody>
