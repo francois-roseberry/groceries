@@ -9,7 +9,8 @@ import com.google.common.collect.ImmutableList;
 
 @Service
 public class GroceryListService {
-	public static final GroceryList GROCERY_LIST = new GroceryList(0, "Provigo", ImmutableList.of(new Product("Milk")));
+	public static final GroceryList GROCERY_LIST = new GroceryList(0, "Provigo",
+			ImmutableList.of(new Recipe("Brownies")), ImmutableList.of(new Product("Milk")));
 
 	public List<GroceryList> getAll() {
 		return ImmutableList.of(GROCERY_LIST);
@@ -22,7 +23,7 @@ public class GroceryListService {
 
 		return Optional.empty();
 	}
-	
+
 	public boolean delete(int id) {
 		return id == GROCERY_LIST.getId();
 	}
