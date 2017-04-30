@@ -32,4 +32,14 @@ public class GroceryListControllerTest {
 	public void gettingUnexistingListShouldReturn404() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/lists/1")).andExpect(status().isNotFound());
 	}
+	
+	@Test
+	public void canDeleteGroceryList() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.delete("/lists/0")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void deletingUnexistingListShouldReturn404() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.delete("/lists/1")).andExpect(status().isNotFound());
+	}
 }

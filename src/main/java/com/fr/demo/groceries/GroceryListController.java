@@ -1,7 +1,5 @@
 package com.fr.demo.groceries;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -10,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import javassist.NotFoundException;
 
 @Controller
 @RequestMapping("/lists")
@@ -29,6 +25,14 @@ public class GroceryListController {
 			model.addAttribute("list", groceryList);
 			return "grocery-list";
 		}).orElseThrow(() -> new ResourceNotFoundException());
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void delete(@PathVariable("id") int id) {
+		if (!service.delete(id)) {
+			throw new ResourceNotFoundException();
+		}
 	}
 
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)

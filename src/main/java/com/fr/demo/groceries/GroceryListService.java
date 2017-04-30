@@ -22,4 +22,8 @@ public class GroceryListService {
 
 		return Optional.empty();
 	}
+	
+	public boolean delete(int id) {
+		return id == GROCERY_LIST.getId();
+	}
 }
