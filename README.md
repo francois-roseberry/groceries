@@ -1,3 +1,3 @@
 # groceries
 
-Actually, it ain't a grocery list app at all, it's just a demo app for using Spring Boot with Thymeleaf templates
+It's just a demo app for using Spring Boot with Thymeleaf templates. Groceries lists are used as a problem domain, but the app is far from being useful.
