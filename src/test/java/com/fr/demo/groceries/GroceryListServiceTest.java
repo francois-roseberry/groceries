@@ -31,6 +31,13 @@ public class GroceryListServiceTest {
 	public void canGetAllExistingGroceryLists() {
 		assertEquals(DemoData.GroceryLists.ALL, service.getAll());
 	}
+	
+	@Test
+	public void creatingNewGroceryListCreatesItEmptyWithNewId() {
+		int newId = service.getAll().size();
+		assertEquals(GroceryList.empty(newId), service.create());
+		assertEquals(Optional.of(GroceryList.empty(newId)), service.get(newId));
+	}
 
 	@Test
 	public void deletingGroceryListCannotBeAccessedAfterwards() {

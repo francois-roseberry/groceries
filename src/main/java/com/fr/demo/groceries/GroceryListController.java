@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 @RequestMapping("/lists")
 public class GroceryListController {
+	private static final String VIEW_NAME = "grocery-list";
+	
 	private final GroceryListService service;
 
 	@Autowired
@@ -23,8 +25,15 @@ public class GroceryListController {
 	public String getListForm(@PathVariable("id") int id, Model model) {
 		return service.get(id).map((groceryList) -> {
 			model.addAttribute("list", groceryList);
-			return "grocery-list";
+			return VIEW_NAME;
 		}).orElseThrow(() -> new ResourceNotFoundException());
+	}
+	
+	@RequestMapping(value = "/create")
+	public String create(Model model) {
+		GroceryList list = service.create();
+		model.addAttribute("list", list);
+		return VIEW_NAME;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

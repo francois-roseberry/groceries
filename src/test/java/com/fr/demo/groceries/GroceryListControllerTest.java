@@ -34,13 +34,21 @@ public class GroceryListControllerTest {
 		int unusedId = DemoData.GroceryLists.ALL.size() + 1;
 		mvc.perform(MockMvcRequestBuilders.get("/lists/{0}", unusedId)).andExpect(status().isNotFound());
 	}
-	
+
+	@Test
+	public void creatingGroceryListReturnsItsPage() throws Exception {
+		int newId = DemoData.GroceryLists.ALL.size();
+		mvc.perform(MockMvcRequestBuilders.post("/lists/create")).andExpect(status().isOk())
+				.andExpect(model().attribute("list", equalTo(GroceryList.empty(newId))))
+				.andExpect(view().name("grocery-list"));
+	}
+
 	@Test
 	public void canDeleteGroceryList() throws Exception {
 		int id = DemoData.GroceryLists.PROVIGO_2.getId();
 		mvc.perform(MockMvcRequestBuilders.delete("/lists/{0}", id)).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	public void deletingUnexistingListShouldReturn404() throws Exception {
 		int unusedId = DemoData.GroceryLists.ALL.size() + 1;

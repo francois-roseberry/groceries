@@ -21,6 +21,13 @@ public class GroceryListService {
 	public Optional<GroceryList> get(int id) {
 		return Optional.ofNullable(lists.get(id));
 	}
+	
+	public GroceryList create() {
+		int newId = lists.size();
+		GroceryList newList = GroceryList.empty(newId);
+		lists.put(newId, newList);
+		return newList;
+	}
 
 	public boolean delete(int id) {
 		return lists.remove(id) != null;

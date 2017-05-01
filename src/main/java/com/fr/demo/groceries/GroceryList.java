@@ -9,6 +9,10 @@ public class GroceryList {
 	private final String name;
 	private final List<Recipe> recipes;
 	private final List<Product> products;
+	
+	public static GroceryList empty(int id) {
+		return new GroceryList(id, "", ImmutableList.of(), ImmutableList.of());
+	}
 
 	public GroceryList(int id, String name, List<Recipe> recipes, List<Product> products) {
 		this.id = id;
