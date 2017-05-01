@@ -23,23 +23,27 @@ public class GroceryListControllerTest {
 
 	@Test
 	public void getGroceryListPage() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/lists/0")).andExpect(status().isOk())
-				.andExpect(model().attribute("list", equalTo(FakeData.GroceryLists.GROCERY_LIST)))
+		int id = DemoData.GroceryLists.PROVIGO_1.getId();
+		mvc.perform(MockMvcRequestBuilders.get("/lists/{0}", id)).andExpect(status().isOk())
+				.andExpect(model().attribute("list", equalTo(DemoData.GroceryLists.PROVIGO_1)))
 				.andExpect(view().name("grocery-list"));
 	}
 
 	@Test
 	public void gettingUnexistingListShouldReturn404() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/lists/1")).andExpect(status().isNotFound());
+		int unusedId = DemoData.GroceryLists.ALL.size() + 1;
+		mvc.perform(MockMvcRequestBuilders.get("/lists/{0}", unusedId)).andExpect(status().isNotFound());
 	}
 	
 	@Test
 	public void canDeleteGroceryList() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.delete("/lists/0")).andExpect(status().isOk());
+		int id = DemoData.GroceryLists.PROVIGO_2.getId();
+		mvc.perform(MockMvcRequestBuilders.delete("/lists/{0}", id)).andExpect(status().isOk());
 	}
 	
 	@Test
 	public void deletingUnexistingListShouldReturn404() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.delete("/lists/1")).andExpect(status().isNotFound());
+		int unusedId = DemoData.GroceryLists.ALL.size() + 1;
+		mvc.perform(MockMvcRequestBuilders.delete("/lists/{0}", unusedId)).andExpect(status().isNotFound());
 	}
 }

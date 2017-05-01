@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 public class RecipeService {
 	
 	public List<Recipe> getAll() {
-		return FakeData.Recipes.ALL;
+		return DemoData.Recipes.ALL;
 	}
 }

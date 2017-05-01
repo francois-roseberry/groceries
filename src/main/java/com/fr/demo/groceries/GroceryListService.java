@@ -1,7 +1,9 @@
 package com.fr.demo.groceries;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -9,19 +11,18 @@ import com.google.common.collect.ImmutableList;
 
 @Service
 public class GroceryListService {
+	private final LinkedHashMap<Integer, GroceryList> lists = DemoData.GroceryLists.ALL.stream()
+			.collect(Collectors.toMap(GroceryList::getId, (groceryList) -> groceryList, (v1,v2) -> v1, LinkedHashMap::new));
+	
 	public List<GroceryList> getAll() {
-		return ImmutableList.of(FakeData.GroceryLists.GROCERY_LIST);
+		return ImmutableList.copyOf(lists.values());
 	}
 
 	public Optional<GroceryList> get(int id) {
-		if (id == FakeData.GroceryLists.GROCERY_LIST.getId()) {
-			return Optional.of(FakeData.GroceryLists.GROCERY_LIST);
-		}
-
-		return Optional.empty();
+		return Optional.ofNullable(lists.get(id));
 	}
 
 	public boolean delete(int id) {
-		return id == FakeData.GroceryLists.GROCERY_LIST.getId();
+		return lists.remove(id) != null;
 	}
 }

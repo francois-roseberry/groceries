@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-public class FakeData {
+public class DemoData {
 	public static class Products {
 		public static final Product MILK = new Product("Milk");
 		public static final Product YOGURT = new Product("Yogurt");
@@ -18,13 +18,16 @@ public class FakeData {
 	}
 
 	public static class GroceryLists {
-		public static final GroceryList GROCERY_LIST = new GroceryList(0, "Provigo", ImmutableList.of(Recipes.BROWNIES),
+		public static final GroceryList PROVIGO_1 = new GroceryList(0, "Provigo", ImmutableList.of(Recipes.BROWNIES),
 				ImmutableList.of(Products.MILK, Products.YOGURT, Products.BREAD));
-		
-		public static final List<GroceryList> ALL = ImmutableList.of(GROCERY_LIST);
+
+		public static final GroceryList PROVIGO_2 = new GroceryList(1, "Provigo 2", ImmutableList.of(),
+				ImmutableList.of(Products.MILK));
+
+		public static final List<GroceryList> ALL = ImmutableList.of(PROVIGO_1, PROVIGO_2);
 	}
-	
-	private FakeData() {
+
+	private DemoData() {
 		// To prevent instantiation
 	}
 }
