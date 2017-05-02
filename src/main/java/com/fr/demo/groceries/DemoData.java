@@ -6,9 +6,9 @@ import com.google.common.collect.ImmutableList;
 
 public class DemoData {
 	public static class Products {
-		public static final Product MILK = new Product("Milk");
-		public static final Product YOGURT = new Product("Yogurt");
-		public static final Product BREAD = new Product("Bread");
+		public static final Product MILK = new Product(0, "Milk");
+		public static final Product YOGURT = new Product(1, "Yogurt");
+		public static final Product BREAD = new Product(2, "Bread");
 	}
 
 	public static class Recipes {
