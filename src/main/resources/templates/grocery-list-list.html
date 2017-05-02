@@ -19,9 +19,11 @@
 	    		<td th:text="${list.name}"></td>
 	    		<td th:text="${list.productCount}"></td>
 	    		<td>
-	    			<a th:href="@{/lists/{id}(id=${list.id})}" class="btn">Edit</a>
-	    			<form style="display: inline;" method="post" th:action="@{/lists/{id}/delete(id=${list.id})}">
-	    				<button type="submit" name="submit" value="value" class="btn">Delete</button>
+	    			<form style="display: inline" method="get" th:action="@{/lists/{id}(id=${list.id})}">
+	    				<button type="submit" class="btn">Edit</button>
+	    			</form>
+	    			<form style="display: inline" method="post" th:action="@{/lists/{id}/delete(id=${list.id})}">
+	    				<button type="submit" class="btn">Delete</button>
 	    			</form>
 	    		</td>
 	    	</tr>
