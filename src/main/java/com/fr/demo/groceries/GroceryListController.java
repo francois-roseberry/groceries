@@ -33,8 +33,7 @@ public class GroceryListController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(Model model) {
 		GroceryList list = service.create();
-		model.addAttribute("list", list);
-		return VIEW_NAME;
+		return "redirect:/lists/" + list.getId();
 	}
 	
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
