@@ -29,5 +29,9 @@
     </table>
     <br />
     <span th:text="|${recipeCount} recipe(s) defined|"></span>
+    <br />
+    <form method="post" th:action="@{/lists/create}">
+    	<button type="submit" name="submit" value="value" class="btn">Add</button>
+    </form>
 </body>
 </html>
