@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/lists")
@@ -29,19 +30,21 @@ public class GroceryListController {
 		}).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
-	@RequestMapping(value = "/create")
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(Model model) {
 		GroceryList list = service.create();
 		model.addAttribute("list", list);
 		return VIEW_NAME;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(value = HttpStatus.OK)
-	public void delete(@PathVariable("id") int id) {
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+	public String delete(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
 		if (!service.delete(id)) {
 			throw new ResourceNotFoundException();
 		}
+		
+		redirectAttributes.addFlashAttribute("SUCCESS_MESSAGE", String.format("Grocery list (%s) was deleted", id));
+		return "redirect:/";
 	}
 
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)

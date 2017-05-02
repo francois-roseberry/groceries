@@ -1,7 +1,9 @@
 package com.fr.demo.groceries;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -46,12 +48,13 @@ public class GroceryListControllerTest {
 	@Test
 	public void canDeleteGroceryList() throws Exception {
 		int id = DemoData.GroceryLists.PROVIGO_2.getId();
-		mvc.perform(MockMvcRequestBuilders.delete("/lists/{0}", id)).andExpect(status().isOk());
+		mvc.perform(MockMvcRequestBuilders.post("/lists/{0}/delete", id)).andExpect(redirectedUrl("/"))
+		.andExpect(flash().attribute("SUCCESS_MESSAGE", String.format("Grocery list (%s) was deleted", id)));
 	}
 
 	@Test
 	public void deletingUnexistingListShouldReturn404() throws Exception {
 		int unusedId = DemoData.GroceryLists.ALL.size() + 1;
-		mvc.perform(MockMvcRequestBuilders.delete("/lists/{0}", unusedId)).andExpect(status().isNotFound());
+		mvc.perform(MockMvcRequestBuilders.post("/lists/{0}/delete", unusedId)).andExpect(status().isNotFound());
 	}
 }

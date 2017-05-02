@@ -18,7 +18,12 @@
 	    	<tr th:each="list : ${lists}">
 	    		<td th:text="${list.name}"></td>
 	    		<td th:text="${list.productCount}"></td>
-	    		<td><a th:href="@{/lists/{listId}(listId=${list.id})}">Edit</a></td>
+	    		<td><a th:href="@{/lists/{id}(id=${list.id})}" class="btn">Edit</a></td>
+	    		<td>
+	    			<form method="post" th:action="@{/lists/{id}/delete(id=${list.id})}">
+	    				<button type="submit" name="submit" value="value" class="btn">Delete</button>
+	    			</form>
+	    		</td>
 	    	</tr>
 	    </tbody>
     </table>
