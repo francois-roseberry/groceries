@@ -45,6 +45,15 @@ public class GroceryListController {
 		redirectAttributes.addFlashAttribute("SUCCESS_MESSAGE", String.format("Grocery list (%s) was deleted", id));
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/{listId}/products/{productId}/delete")
+	public String deleteProduct(@PathVariable("listId") int listId, @PathVariable("productId") int productId) {
+		if (!service.deleteProduct(listId, productId)) {
+			throw new ResourceNotFoundException();
+		}
+		
+		return String.format("redirect:/lists/%s", listId);
+	}
 
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	class ResourceNotFoundException extends RuntimeException {

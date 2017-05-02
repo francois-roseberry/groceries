@@ -32,4 +32,8 @@ public class GroceryListService {
 	public boolean delete(int id) {
 		return lists.remove(id) != null;
 	}
+
+	public boolean deleteProduct(int listId, int productId) {
+		return true;
+	}
 }

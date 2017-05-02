@@ -64,4 +64,11 @@ public class GroceryListControllerTest {
 		int unusedId = DemoData.GroceryLists.ALL.size() + 1;
 		mvc.perform(MockMvcRequestBuilders.post("/lists/{0}/delete", unusedId)).andExpect(status().isNotFound());
 	}
+	
+	@Test
+	public void canDeleteProduct() throws Exception {
+		int listId = DemoData.GroceryLists.PROVIGO_1.getId();
+		int productId = DemoData.GroceryLists.PROVIGO_1.getProducts().get(0).getId();
+		mvc.perform(MockMvcRequestBuilders.post("/lists/{0}/products/{1}/delete", listId, productId)).andExpect(redirectedUrl(String.format("/lists/%s", listId)));
+	}
 }
