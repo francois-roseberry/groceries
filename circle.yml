@@ -3,6 +3,6 @@ jobs:
     build:
         docker:
             - image: openjdk:8
-    steps:
-        - checkout
-        - run: mvn package
+        steps:
+            - checkout
+            - run: mvn package
