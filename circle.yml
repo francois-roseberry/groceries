@@ -3,7 +3,8 @@ jobs:
     build:
         working_directory: ~/groceries
         docker:
-            - image: docker-maven:jdk-8
+            - image: openjdk:8
+            - image: maven:3.5-jdk-8
         steps:
             - checkout
             - run: mvn package
