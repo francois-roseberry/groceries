@@ -5,4 +5,4 @@ jobs:
             - image: openjdk:8
     steps:
         - checkout
-        - run : mvn package
+        - run: mvn package
