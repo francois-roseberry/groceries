@@ -1,10 +1,7 @@
-version: 2
-jobs:
-    build:
-        working_directory: ~/groceries
-        docker:
-            - image: openjdk:8
-            - image: maven:3.5-jdk-8
-        steps:
-            - checkout
-            - run: mvn package
+general:
+    branches:
+        only:
+            - master
+machine:
+    java:
+        version: oraclejdk8
